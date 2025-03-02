@@ -1,0 +1,15 @@
+services:
+  bazarr_auto_translate:
+    build: .
+    container_name: bazarr_auto_translate
+    network_mode: service:gluetun
+    restart: unless-stopped
+    depends_on:
+      bazarr:
+        condition: service_healthy
+    environment:
+      - BAZARR_HOSTNAME=localhost
+      - BAZARR_PORT=6767
+      - BAZARR_APIKEY=TEST
+      - FIRST_LANG=pl
+      - SECOND_LANG=en

@@ -106,8 +106,7 @@ COPY docker-entrypoint.sh /
 WORKDIR /app
 
 # Create a cron file with the schedule
-# RUN echo "0 */6 * * * root /app/bin/python /app/translations.py > /proc/1/fd/1 2>/proc/1/fd/2" | tee /etc/cron.d/translations-cron
-RUN echo "* * * * * root /app/bin/python /app/translations.py > /proc/1/fd/1 2>/proc/1/fd/2" | tee /etc/cron.d/translations-cron
+RUN echo "0 */6 * * * root /app/bin/python /app/translations.py > /proc/1/fd/1 2>/proc/1/fd/2" | tee /etc/cron.d/translations-cron
 RUN chmod 0644 /etc/cron.d/translations-cron
 RUN chmod +x /app/translations.py
 RUN mkdir -p /var/run/ && chown app:app /var/run/
